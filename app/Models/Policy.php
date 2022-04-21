@@ -12,6 +12,6 @@ class Policy extends Model
     protected $fillable=[
     'Type_Order','Reciver_name','Country',
     'no_items','Product_weight','policy_number',
-    'status','order_id','reference'];
+    'status','order_id','reference','user_id'];
 
 }

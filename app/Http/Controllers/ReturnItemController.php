@@ -15,6 +15,8 @@ use App\Models\Row;
 use App\Models\Packwindow;
 use App\Models\User;
 use App\Models\Returnitem;
+use App\Models\Item;
+
 use App\Models\Coverrequest;
 
 use App\Models\Alreadycovered;
@@ -43,6 +45,16 @@ class ReturnItemController extends Controller
         );
 
         Returnitem::create($the_return_item);
+
+
+        
+        Item::where('order_id',$the_order_id)->delete();
+
+        AddToShelf::where('pack_id',$the_order_id)->delete();
+
+        Usersorder::where('Product_arrival_id',$the_order_id)->first()->delete();
+
+
 
         return redirect("/admin/returnitems");
 

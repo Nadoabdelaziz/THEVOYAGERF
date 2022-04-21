@@ -9,6 +9,6 @@ class ShipTalabat extends Model
 {
     use HasFactory;
 
-    protected $fillable=['req_code','Goal_Country','Box_id','email','item_status','items_weight','order_id','number_items'];
+    protected $fillable=['req_code','Goal_Country','Box_id','email','item_status','items_weight','order_id','number_items','paid'];
 
 }

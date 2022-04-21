@@ -49,6 +49,7 @@ class PolicyController extends Controller
 
         $Policy=array(
             'order_id'=>$order_id,
+            'user_id' => $the_ship_talabat->Box_id,
             'Country' =>$the_ship_talabat->Goal_Country,
             'status'=>'بأنتظار البوليصة',
             'Product_weight'=>$the_ship_talabat->items_weight ,
@@ -126,6 +127,7 @@ class PolicyController extends Controller
 
         $the_shipped_item=array(
             'order_id'=>$the_order_id,
+            'user_id'=> $the_policy->user_id,
             'reciever_name'=>$the_policy->Reciver_name,
             'no_items' => $the_policy->no_items,
             'policy_number' => $the_policy->policy_number,
@@ -148,8 +150,12 @@ class PolicyController extends Controller
 
 
     public function FinalArrived($the_order_id){
+
+        $Shipped_item=Shipppeditem::where('order_id',$the_order_id)->first();
+
         $the_last_arrival=array(
-            'order_id' =>$the_order_id
+            'order_id' =>$the_order_id,
+            'user_id' =>$Shipped_item->user_id
         );
 
         Finalarrival::create($the_last_arrival);

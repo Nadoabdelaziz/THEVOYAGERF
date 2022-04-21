@@ -9,6 +9,7 @@ class Shipppeditem extends Model
 {
     use HasFactory;
     
-    protected $fillable=['order_id','','reciever_name','no_items','policy_number','final_weight','reference'];
+    protected $fillable=['order_id','','reciever_name','no_items',
+    'policy_number','final_weight','reference','user_id'];
 
 }

@@ -42,129 +42,129 @@ class coverrequestsController extends Controller
 
 {
     
-    public function Recover($id) { 
+    // public function Recover($id) { 
     
-        $User_Order=Usersorder::where('id',$id)->first();
+    //     $User_Order=Usersorder::where('id',$id)->first();
 
-        $covers=Coverrequest::all();
+    //     $covers=Coverrequest::all();
 
-        // get the order on shelf id as to delete the record on shelf as a new recover is requested
+    //     // get the order on shelf id as to delete the record on shelf as a new recover is requested
 
-        $order_on_shelf=AddToShelf::where('id',$User_Order->Product_Shelf_id)->first();
+    //     $order_on_shelf=AddToShelf::where('id',$User_Order->Product_Shelf_id)->first();
 
 
 
-        $recover = array(
+    //     $recover = array(
 
-            'order_id' => $User_Order->Product_arrival_id,
-            'user_id'  => $User_Order->user_id,
-            'Product_Dimension' =>$User_Order->Product_Dimension,
-            'Product_Weight' =>$User_Order->Product_Weight,
-            'no_of_items' => 1,
-            'Paid_Amount'=> 20,
-            'reference'=> 'asdadadadadasd',
-            'order_statuss'=>'asdadasd'
+    //         'order_id' => $User_Order->Product_arrival_id,
+    //         'user_id'  => $User_Order->user_id,
+    //         'Product_Dimension' =>$User_Order->Product_Dimension,
+    //         'Product_Weight' =>$User_Order->Product_Weight,
+    //         'no_of_items' => 1,
+    //         'Paid_Amount'=> 20,
+    //         'reference'=> 'asdadadadadasd',
+    //         'order_statuss'=>'asdadasd'
             
-        );
+    //     );
 
-        Coverrequest::create($recover);
+    //     Coverrequest::create($recover);
 
-        Orderstatus::where('order_id',$User_Order->Product_arrival_id)->update([
+    //     Orderstatus::where('order_id',$User_Order->Product_arrival_id)->update([
 
-            'status'=>'تم طلب تغليفة من العميل',
+    //         'status'=>'تم طلب تغليفة من العميل',
         
-        ]);
+    //     ]);
 
-        $O_status=Orderstatus::where('order_id',$User_Order->Product_arrival_id)->first();
-        $cover_r=Coverrequest::where('order_id',$User_Order->Product_arrival_id)->first();
+    //     $O_status=Orderstatus::where('order_id',$User_Order->Product_arrival_id)->first();
+    //     $cover_r=Coverrequest::where('order_id',$User_Order->Product_arrival_id)->first();
 
 
-                Packwindow::where('Arrival_ID',$User_Order->Product_arrival_id)->update([
+    //             Packwindow::where('Arrival_ID',$User_Order->Product_arrival_id)->update([
 
-                        'order_status'=>$O_status->Status,
-                        'CoverRequest_ID'=> $cover_r->id,
+    //                     'order_status'=>$O_status->Status,
+    //                     'CoverRequest_ID'=> $cover_r->id,
                         
-                ]);
+    //             ]);
 
 
-        $User_Order->delete();
-        $order_on_shelf->delete();
+    //     $User_Order->delete();
+    //     $order_on_shelf->delete();
 
 
-        return redirect('/admin/coverrequests');
+    //     return redirect('/admin/coverrequests');
 
-        }
+    //     }
 
 
             
-    public function second_cover($id1,$id2) { 
+    // public function second_cover($id1,$id2) { 
     
-        if($id1 != 0  && $id2 !=0 ){
+    //     if($id1 != 0  && $id2 !=0 ){
 
             
-            $first_order=Usersorder::where('id',$id1)->first();
-            $second_order=Usersorder::where('id',$id2)->first();
+    //         $first_order=Usersorder::where('id',$id1)->first();
+    //         $second_order=Usersorder::where('id',$id2)->first();
 
 
-            $first_user=$first_order->user_id;
-            $second_user=$second_order->user_id;
+    //         $first_user=$first_order->user_id;
+    //         $second_user=$second_order->user_id;
 
 
 
-            if($first_user == $second_user )
-            {
+    //         if($first_user == $second_user )
+    //         {
                         
-                    $covers=Coverrequest::all();
+    //                 $covers=Coverrequest::all();
             
-                    // get the order on shelf id as to delete the record on shelf as a new recover is requested
+    //                 // get the order on shelf id as to delete the record on shelf as a new recover is requested
             
-                    $first_order_on_shelf=AddToShelf::where('id',$first_order->Product_Shelf_id)->first();
+    //                 $first_order_on_shelf=AddToShelf::where('id',$first_order->Product_Shelf_id)->first();
             
-                    $second_order_on_shelf=AddToShelf::where('id',$second_order->Product_Shelf_id)->first();
+    //                 $second_order_on_shelf=AddToShelf::where('id',$second_order->Product_Shelf_id)->first();
 
 
 
 
-                    // $talabat= array(
-                    //     'req_code'      => 'code',
-                    //     'Goal_Country'  => 'الكويت',
-                    //     'Box_id'        => $first_user,
-                    //     'email '        => 'email@email.com',
-                    //     'item_status'   => 'موجودة في المستودع',
-                    //     'items_weight'  =>  $first_order->Product_Weight + $second_order->Product_Weight,
-                    // );
+    //                 // $talabat= array(
+    //                 //     'req_code'      => 'code',
+    //                 //     'Goal_Country'  => 'الكويت',
+    //                 //     'Box_id'        => $first_user,
+    //                 //     'email '        => 'email@email.com',
+    //                 //     'item_status'   => 'موجودة في المستودع',
+    //                 //     'items_weight'  =>  $first_order->Product_Weight + $second_order->Product_Weight,
+    //                 // );
 
-                    // ShipTalabat::create($talabat);
+    //                 // ShipTalabat::create($talabat);
 
 
 
                     
-                    $recover = array
-                    (
+    //                 $recover = array
+    //                 (
 
-                        'order_id' => $first_order->Product_arrival_id,
-                        'user_id'  => $first_order->user_id,
-                        'Product_Dimension' =>$first_order->Product_Dimension + $second_order->Product_Dimension,
-                        'Product_Weight' =>$first_order->Product_Weight + $second_order->Product_Weight,
-                        'no_of_items' => 2,
-                        'Paid_Amount'=> 20,
-                        'reference'=> $id1.' '.$id2,
-                        'order_statuss'=>'موجودة في المسودع',
-                        'sec_order_id'=>$second_order->Product_arrival_id,
-                        'st_Date_created'=>$first_order->created_at,
-                        'nd_Date_created'=>$second_order->created_at,
-                        'st_Source'=>$first_order->Source_Market,
-                        'nd_source' => $second_order->Source_Market ,
-                        'st_Weight'=>$first_order->Product_Weight ,
-                        'nd_weight'=> $second_order->Product_Weight ,
-                        'st_image'=>$first_order->Product_image ,
-                        'nd_image'=>$second_order->Product_image,
-                        'st_shelf' =>$first_order->Shelf .$first_order->row ,
-                        'nd_shelf' => $second_order->Shelf.$second_order->row
+    //                     'order_id' => $first_order->Product_arrival_id,
+    //                     'user_id'  => $first_order->user_id,
+    //                     'Product_Dimension' =>$first_order->Product_Dimension + $second_order->Product_Dimension,
+    //                     'Product_Weight' =>$first_order->Product_Weight + $second_order->Product_Weight,
+    //                     'no_of_items' => 2,
+    //                     'Paid_Amount'=> 20,
+    //                     'reference'=> $id1.' '.$id2,
+    //                     'order_statuss'=>'موجودة في المسودع',
+    //                     'sec_order_id'=>$second_order->Product_arrival_id,
+    //                     'st_Date_created'=>$first_order->created_at,
+    //                     'nd_Date_created'=>$second_order->created_at,
+    //                     'st_Source'=>$first_order->Source_Market,
+    //                     'nd_source' => $second_order->Source_Market ,
+    //                     'st_Weight'=>$first_order->Product_Weight ,
+    //                     'nd_weight'=> $second_order->Product_Weight ,
+    //                     'st_image'=>$first_order->Product_image ,
+    //                     'nd_image'=>$second_order->Product_image,
+    //                     'st_shelf' =>$first_order->Shelf .$first_order->row ,
+    //                     'nd_shelf' => $second_order->Shelf.$second_order->row
 
-                    );
+    //                 );
 
-                    Coverrequest::create($recover);
+    //                 Coverrequest::create($recover);
 
 
 
@@ -172,81 +172,81 @@ class coverrequestsController extends Controller
 
 
                     
-                    $first_order->delete();
-                    $second_order->delete();
+    //                 $first_order->delete();
+    //                 $second_order->delete();
 
 
-                    $first_order_on_shelf->delete();
-                    $second_order_on_shelf->delete();
+    //                 $first_order_on_shelf->delete();
+    //                 $second_order_on_shelf->delete();
 
-                    return redirect('/admin/coverrequests');
-            }
+    //                 return redirect('/admin/coverrequests');
+    //         }
 
-            else {
-                $msg="Orders Must be by the same User";
-                return $msg;
-            }
+    //         else {
+    //             $msg="Orders Must be by the same User";
+    //             return $msg;
+    //         }
             
     
     
-        }
+    //     }
 
-        else if ($id1 !=0 && $id2 == 0 ) {
+    //     else if ($id1 !=0 && $id2 == 0 ) {
 
 
-            $first_order=Usersorder::where('id',$id1)->first();
+    //         $first_order=Usersorder::where('id',$id1)->first();
 
-            $first_user=$first_order->user_id;
+    //         $first_user=$first_order->user_id;
 
     
-            $covers=Coverrequest::all();
+    //         $covers=Coverrequest::all();
     
-            // get the order on shelf id as to delete the record on shelf as a new recover is requested
+    //         // get the order on shelf id as to delete the record on shelf as a new recover is requested
     
-            $first_order_on_shelf=AddToShelf::where('id',$first_order->Product_Shelf_id)->first();
+    //         $first_order_on_shelf=AddToShelf::where('id',$first_order->Product_Shelf_id)->first();
     
 
 
-            $talabat= array(
-                'order_id' => $first_order->Product_arrival_id,
-                'user_id'  => $first_order->user_id,
-                'Product_Dimension' =>$first_order->Product_Dimension,
-                'Product_Weight' =>$first_order->Product_Weight,
-                'no_of_items' => 2,
-                'Paid_Amount'=> 20,
-                'reference'=> $id1,
-                'order_statuss'=>'موجودة في المسودع',
-                'st_Date_created'=>$first_order->created_at,
-               'st_Source'=> $first_order->Source_Market,
-                'st_Weight'=>$first_order->Product_Weight,
-                'st_shelf' =>$first_order->Shelf .$first_order->row ,
-            );
+    //         $talabat= array(
+    //             'order_id' => $first_order->Product_arrival_id,
+    //             'user_id'  => $first_order->user_id,
+    //             'Product_Dimension' =>$first_order->Product_Dimension,
+    //             'Product_Weight' =>$first_order->Product_Weight,
+    //             'no_of_items' => 2,
+    //             'Paid_Amount'=> 20,
+    //             'reference'=> $id1,
+    //             'order_statuss'=>'موجودة في المسودع',
+    //             'st_Date_created'=>$first_order->created_at,
+    //            'st_Source'=> $first_order->Source_Market,
+    //             'st_Weight'=>$first_order->Product_Weight,
+    //             'st_shelf' =>$first_order->Shelf .$first_order->row ,
+    //         );
 
-            Coverrequest::create($talabat);
+    //         Coverrequest::create($talabat);
 
             
 
         
-            $first_order->delete();
+    //         $first_order->delete();
 
 
-            $first_order_on_shelf->delete();
+    //         $first_order_on_shelf->delete();
         
 
-            return redirect('/admin/coverrequests');
+    //         return redirect('/admin/coverrequests');
 
-        }
+    //     }
 
 
 
-        else if ($id1==0 && $id2==0) {
-            $msg="please choose any orders";
-            return $msg;
-        }
+    //     else if ($id1==0 && $id2==0) {
+    //         $msg="please choose any orders";
+    //         return $msg;
+    //     }
 
 
        
-    }
+    // }
 
 
 

@@ -9,6 +9,6 @@ class Finalarrival extends Model
 {
     use HasFactory;
 
-    protected $fillable=['order_id'];
+    protected $fillable=['order_id','user_id'];
 
 }
